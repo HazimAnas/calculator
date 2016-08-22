@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('calculator', ['ionic'])
+var app = angular.module('calculator', ['ionic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,4 +21,16 @@ angular.module('calculator', ['ionic'])
       StatusBar.styleDefault();
     }
   });
+})
+
+app.controller('calculatorCtrl', function($scope) {
+
+  $scope.Calculate = function() {
+    $scope.result = parseFloat($scope.amount);
+    for (i = 0; i < $scope.days; i++) {
+      $scope.result += (parseFloat($scope.result) * parseFloat($scope.percentage/100));
+      console.log($scope.result);
+    };
+    return $scope.result;
+  };
 })
